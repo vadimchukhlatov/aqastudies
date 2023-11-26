@@ -18,6 +18,7 @@ class GetEqualNumberBooks:
 
     def give_equal_to_users(self):
         result = []
+        users_cnt = len(self.users_list)
         for param in self.users_list:
             result.append({'name': param['name'],
                            'gender': param['gender'],
@@ -26,7 +27,6 @@ class GetEqualNumberBooks:
                            'books': []
                            })
         for num, book in enumerate(self.books_list):
-            users_cnt = len(self.users_list)
             if num + 1 > users_cnt:
                 num = num % users_cnt
             result[num]['books'].append(book)
