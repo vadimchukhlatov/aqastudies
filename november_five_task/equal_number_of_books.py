@@ -1,38 +1,38 @@
 import csv
 import json
+from typing import Union
 
 
 class GetEqualNumberBooks:
-    def __init__(self, json_file_name, csv_file_name):
-        self.csv_file = self.get_csv_file(csv_file_name)
-        self.json_file = self.get_json_file(json_file_name)
-        self.result = self.give_equal_to_users()
+    def __init__(self, json_file_name: str, csv_file_name: str):
+        self.books_list = self.read_csv(csv_file_name)
+        self.users_list = self.read_json(json_file_name)
 
-    def get_csv_file(self, file_name):
+    def read_csv(self, file_name):
         with open(file_name, newline='') as f:
             return [row for row in csv.DictReader(f)]
 
-    def get_json_file(self, file_name):
+    def read_json(self, file_name):
         with open(file_name) as f:
             return json.load(f)
 
     def give_equal_to_users(self):
-        avg = len(self.csv_file) / float(len(self.json_file))
-        out = []
-        last = 0.0
-        while last < len(self.csv_file):
-            out.append(self.csv_file[int(last):int(last + avg)])
-            last += avg
         result = []
-        for num, param in enumerate(self.json_file):
+        for param in self.users_list:
             result.append({'name': param['name'],
                            'gender': param['gender'],
                            'address': param['address'],
                            'age': param['age'],
-                           'books': out[num]})
+                           'books': []
+                           })
+        for num, book in enumerate(self.books_list):
+            users_cnt = len(self.users_list)
+            if num + 1 > users_cnt:
+                num = num % users_cnt
+            result[num]['books'].append(book)
         return result
 
-    def create_result_json(self):
+    def write_to_json(self, result: Union[dict, list]):
         with open('result.json', 'w') as f:
-            json.dump(self.result, f, indent=4)
+            json.dump(result, f, indent=4)
         print('Файл успешно создан')
