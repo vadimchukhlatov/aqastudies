@@ -1,1 +1,2 @@
 pytest==7.4.3
+request==2.28.1

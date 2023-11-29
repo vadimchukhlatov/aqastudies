@@ -1,5 +1,5 @@
 import pytest
-from src.circle import Circle
+from completed_tasks.oop_figure_task.src.circle import Circle
 
 
 @pytest.mark.smoke

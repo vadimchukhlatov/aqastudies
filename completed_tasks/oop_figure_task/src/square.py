@@ -1,4 +1,4 @@
-from src.rectangle import Rectangle
+from completed_tasks.oop_figure_task.src.rectangle import Rectangle
 
 
 class Square(Rectangle):

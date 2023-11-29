@@ -1,4 +1,4 @@
-from src.figure import Figure
+from completed_tasks.oop_figure_task.src.figure import Figure
 
 
 class Rectangle(Figure):

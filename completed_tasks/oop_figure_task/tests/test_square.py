@@ -1,5 +1,5 @@
 import pytest
-from src.square import Square
+from completed_tasks.oop_figure_task.src.square import Square
 
 
 @pytest.mark.smoke
