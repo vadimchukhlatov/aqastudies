@@ -1,5 +1,5 @@
 import pytest
-from completed_tasks.oop_figure_task.src.rectangle import Rectangle
+from completed_tasks.first_month.oop_figure_task.src.rectangle import Rectangle
 
 
 @pytest.mark.smoke

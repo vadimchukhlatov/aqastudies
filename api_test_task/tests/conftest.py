@@ -1,36 +1,33 @@
 import os.path
 import sys
+import pytest
 
 WD = os.path.abspath(os.path.dirname(sys.argv[0]))
 
 
 def pytest_addoption(parser):
-    parser.addoption("--actual", help="Actual value")
+    parser.addoption("--service", default='dog_settings', help="dog_settings, brewery_settings")
     parser.addoption("--expected", default=200, type=int, help="Expected value")
 
 
-STAGE = 'pet_settings'
-
 STAGE_SETTINGS = {
-    'pet_settings': {
+    'dog_settings': {
         'apiSettings': {
-            'url': 'https://dog.ceo/api',
+            'url': 'https://dog.ceo',
+            'user': 'qwerty123',
+            'pass': 'qwerty123'
+        }
+    },
+    'brewery_settings': {
+        'apiSettings': {
+            'url': 'https://api.openbrewerydb.org/v1/',
             'user': 'qwerty',
             'pass': 'qwerty'
-        },
-        'dbSettings': {
-            'url': 'https://petstore.swagger.io/v2',
-            'user': 'qwerty',
-            'pass': 'qwerty'
-        },
-        'domain': {
-            'pet': '/pet',
-            'store': '/store',
-            'user': '/user'
         }
     }
 }
 
-API_SETTINGS = STAGE_SETTINGS[STAGE]['apiSettings']
-DB_SETTINGS = STAGE_SETTINGS[STAGE]['dbSettings']
-DOMAIN_SETTINGS = STAGE_SETTINGS[STAGE]['domain']
+
+@pytest.fixture(scope='session')
+def connection_info(request):
+    return STAGE_SETTINGS[request.config.getoption('service')]
