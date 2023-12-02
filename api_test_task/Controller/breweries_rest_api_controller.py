@@ -12,6 +12,11 @@ class ApiBreweriesController(RestApiController):
         return self.get(self.domain + end_point)
 
     def find_filtered_list_breweries(self, **kwargs):
+        """Поиск фильтруемого списка заводов
+
+        :param kwargs:используются фильтры из ТЗ (type=micro)
+        :return: (dict list)
+        """
         end_point = f'/breweries?'
         for key, value in kwargs.items():
             end_point += f'{key}={value}&'
