@@ -6,21 +6,21 @@ WD = os.path.abspath(os.path.dirname(sys.argv[0]))
 
 
 def pytest_addoption(parser):
-    parser.addoption("--service", default='dog_settings', help="dog_settings, brewery_settings")
+    parser.addoption("--service", default='brewery_settings', help="dog_settings, brewery_settings")
     parser.addoption("--expected", default=200, type=int, help="Expected value")
 
 
 STAGE_SETTINGS = {
-    'dog_settings': {
+    'dogSettings': {
         'apiSettings': {
             'url': 'https://dog.ceo',
             'user': 'qwerty123',
             'pass': 'qwerty123'
         }
     },
-    'brewery_settings': {
+    'brewerySettings': {
         'apiSettings': {
-            'url': 'https://api.openbrewerydb.org/v1/',
+            'url': 'https://api.openbrewerydb.org/v1',
             'user': 'qwerty',
             'pass': 'qwerty'
         }

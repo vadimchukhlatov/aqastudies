@@ -9,7 +9,6 @@ class RestApiController:
     def post(self, url, data: Union[dict, list, None] = None):
         try:
             response = requests.post(url=url, json=data, auth=(self.api_settings['user'], self.api_settings['pass']))
-            print(response.json())
             if response.status_code == 200:
                 return response.json()
             else:
@@ -21,7 +20,6 @@ class RestApiController:
     def get(self, url):
         try:
             response = requests.get(url=url, auth=(self.api_settings['user'], self.api_settings['pass']))
-            print(response.json())
             if response.status_code == 200:
                 return response.json()
             else:
