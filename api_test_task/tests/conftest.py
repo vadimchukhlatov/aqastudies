@@ -24,6 +24,13 @@ STAGE_SETTINGS = {
             'user': 'qwerty',
             'pass': 'qwerty'
         }
+    },
+    'placeholderSettings': {
+        'apiSettings': {
+            'url': 'https://jsonplaceholder.typicode.com',
+            'user': 'qwerty',
+            'pass': 'qwerty'
+        }
     }
 }
 
