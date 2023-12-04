@@ -6,9 +6,14 @@ WD = os.path.abspath(os.path.dirname(sys.argv[0]))
 
 
 def pytest_addoption(parser):
-    parser.addoption("--service", default='brewery_settings', help="dog_settings, brewery_settings")
+    parser.addoption("--url", default='https://ya.ru')
     parser.addoption("--expected", default=200, type=int, help="Expected value")
 
+@pytest.fixture(scope='function')
+def get_option(request):
+    url = request.config.getoption('url')
+    status_code = request.config.getoption('expected')
+    return url, status_code
 
 STAGE_SETTINGS = {
     'dogSettings': {
