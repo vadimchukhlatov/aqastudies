@@ -1,4 +1,4 @@
-from src.figure import Figure
+from completed_tasks.first_month.oop_figure_task.src.figure import Figure
 
 
 class Triangle(Figure):
